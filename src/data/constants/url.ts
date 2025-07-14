@@ -1,0 +1,1 @@
+export const BASE_URL = "/task_manager_t1/";
