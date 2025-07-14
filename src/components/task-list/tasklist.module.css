@@ -1,0 +1,22 @@
+.list {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 30px;
+}
+
+.noTasks {
+  padding: 30px;
+}
+
+@media (max-width: 768px) {
+  .list {
+    justify-content: center;
+    padding: 10px; 
+  }
+
+  .noTasks {
+    padding: 10px;
+  }
+}

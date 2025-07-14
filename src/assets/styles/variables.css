@@ -1,0 +1,7 @@
+:root {
+  --admiral-color-Neutral_Neutral10: #EAEBEC;
+  --admiral-color-Neutral_Neutral00: #FFFFFF;
+
+  --body-bg: var(--admiral-color-Neutral_Neutral10);
+  --card-bg: var(--admiral-color-Neutral_Neutral00);
+}
