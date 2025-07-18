@@ -1,0 +1,1 @@
+export { getTagKind } from "./getTagKind";
