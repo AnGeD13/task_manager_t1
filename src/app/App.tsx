@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { TasksProvider } from '../context/tasks/TasksProvider';
-import MainPage from '../pages/main/MainPage';
-import DetailPage from '../pages/detail/DetailPage';
+import { TasksProvider } from './providers';
+import { HomePage } from '../pages/home';
+import { DetailPage } from '../pages/detail';
+import "./index.css";
 
 
 export default function App() {
@@ -9,7 +10,7 @@ export default function App() {
     <TasksProvider>
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
-          <Route path="/" element={<MainPage/>}/>
+          <Route path="/" element={<HomePage/>}/>
           <Route path="/task/:id" element={<DetailPage/>}/>
         </Routes>
       </BrowserRouter>
