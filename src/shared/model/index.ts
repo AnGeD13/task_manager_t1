@@ -1,1 +1,0 @@
-export { getTagKind } from "./getTagKind";

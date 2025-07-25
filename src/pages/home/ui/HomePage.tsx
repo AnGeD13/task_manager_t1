@@ -1,20 +1,26 @@
-
-import { TaskList } from "../../../widgets/tasklist";
-import { FilterSection } from "../../../widgets/filter-section";
+import { TaskList } from "@widgets/tasklist";
 import styles from "./homepage.module.css";
-import { useTaskFilter } from "../../../features/filter-task/lib/useTaskFilter";
+import { useTaskFilter } from "@features/filter-task/lib/useTaskFilter";
+import { Header } from "@widgets/header";
+import { FilterType } from "@features/filter";
 
 
 export function HomePage() {
-  const {filteredTasks, setFilterCategory, setFilterStatus, setFilterPriority} = useTaskFilter();
+  const {
+    filteredTasks, 
+    setFilterCategory, 
+    setFilterStatus, 
+    setFilterPriority
+  } = useTaskFilter();
 
   return (
     <div className={styles.wrapper}>
-      <FilterSection
-        setFilterCategory={setFilterCategory}
-        setFilterStatus={setFilterStatus}
-        setFilterPriority={setFilterPriority}
-      />
+      <Header/>
+      <div className={styles.filter}>
+        <FilterType type="category" setState={setFilterCategory}/>
+        <FilterType type="status" setState={setFilterStatus}/>
+        <FilterType type="priority" setState={setFilterPriority}/>
+      </div>
       <TaskList tasks={filteredTasks}/>
     </div>
   )

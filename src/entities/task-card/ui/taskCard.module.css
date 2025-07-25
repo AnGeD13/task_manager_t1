@@ -1,17 +1,38 @@
+.cardWrapper {
+  width: calc(30% - 10px);
+  min-height: 200px;
+  border-radius: 20px;
+  box-shadow: 1px 0.5px 7px 0px;
+  background-color: var(--card-bg);
+}
+
 .card {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: calc(30% - 10px);
-  min-height: 200px;
-  background-color: var(--card-bg);
-  border-radius: 20px;
+  height: 100%;
   padding: 15px;
-  box-shadow: 1px 0.5px 7px 0px;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+.card_bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.delete_btn_wrapper {
+  height: 36px;
+  width: 36px;
 }
 
 .textBlock {
   height: 65%;
+  margin-bottom: 10px;
 }
 
 .title {
@@ -31,20 +52,24 @@
   text-overflow: ellipsis;
 }
 
+.date {
+  text-decoration: underline;
+}
+
 @media (max-width: 1350px) {
-  .card {
+  .cardWrapper {
     width: calc(45% - 10px);
   }
 }
 
 @media (max-width: 830px) {
-  .card {
+  .cardWrapper {
     width: 100%;
   }
 }
 
 @media (max-width: 430px) {
-  .card {
+  .cardWrapper {
     width: 230px;
   }
 

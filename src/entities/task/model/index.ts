@@ -5,4 +5,15 @@ export interface ITask {
   category: string;
   status: string;
   priority: string;
+  date: string;
+};
+
+export const EMPTY_TASK = {
+    id: "",
+    title: "",
+    description: "",
+    category: "",
+    status: "",
+    priority: "",
+    date: "",
 };

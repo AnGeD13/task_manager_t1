@@ -1,35 +1,32 @@
 import { Button, T, TextArea, TextInput } from "@admiral-ds/react-ui";
-import { FilterType } from "../../../features/filter";
+import { FilterType } from "@features/filter";
+import { useTaskPost, type TmodeTaskPostHook } from "@features/edit-task/lib/useTaskPost";
+import { RequiredField } from "@shared/required-field";
 import styles from "./detailpage.module.css";
-import { useTaskEdit } from "../../../features/edit-task/lib/useTaskEdit";
 
 
-export function DetailPage() {
+export function DetailPage(mode: TmodeTaskPostHook) {
   const {
     task, 
-    isTitle, 
+    isTask, 
     changeTaskField, 
-    handleUpdateTask, 
+    handlePostTask, 
     handleGoBack
-  } = useTaskEdit();
+  } = useTaskPost(mode);
 
   return (
     <form className={styles.form}>
       <div>
         <label>
-          <T font="Main/S">Заголовок:</T>
+          <T font="Main/S">Заголовок:<RequiredField/></T>
           <TextInput 
             className={styles.textInput}
             required
             defaultValue={task.title}
             onChange={event => changeTaskField('title', event.target.value)}
             dimension="s"
+            placeholder="Введите заголовок"
           />
-          <T 
-            font="Additional/S" 
-            color="Error/Error 60 Main" 
-            className={isTitle ? styles.isNotVisible : styles.isVisible}
-          >Заголовок обязателен для заполнения</T>
         </label>
       </div>
 
@@ -41,33 +38,25 @@ export function DetailPage() {
             defaultValue={task.description}
             onChange={event => changeTaskField('description', event.target.value)}
             dimension="s"
+            placeholder="Опишите задачу"
           />
         </label>
       </div>
 
-      <FilterType
-        type="category"
-        value={task.category}
-        changeTask={changeTaskField}
-      />
+      <FilterType type="category" value={task.category} changeTask={changeTaskField}/>
+      <FilterType type="status" value={task.status} changeTask={changeTaskField}/>
+      <FilterType type="priority" value={task.priority} changeTask={changeTaskField}/>
 
-      <FilterType
-        type="status"
-        value={task.status}
-        changeTask={changeTaskField}
-      />
-
-      <FilterType
-        type="priority"
-        value={task.priority}
-        changeTask={changeTaskField}
-      />
-
+      <T 
+        font="Additional/S" 
+        color="Error/Error 60 Main" 
+        className={isTask ? styles.isNotVisible : styles.isVisible}
+      >Заполните все обязательные поля</T>
       <div className={styles.btns}>
         <Button 
           appearance="success" 
           dimension="s" 
-          onClick={handleUpdateTask}
+          onClick={handlePostTask}
         >Сохранить</Button>
         <Button 
           appearance="tertiary" 

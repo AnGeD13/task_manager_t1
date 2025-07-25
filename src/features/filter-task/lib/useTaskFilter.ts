@@ -1,25 +1,19 @@
-import { useContext, useState } from "react";
-import { TasksContext } from "../../../app/providers";
-import { categoryTypesWithAll, priorityTypesWithAll, statusTypesWithAll } from "../../../entities/filters";
+import { useState } from "react";
+import { useAppSelector } from "@app/store/hooks";
+import { ALL_TYPES } from "@entities/task/model/taskTypes";
 
 export function useTaskFilter() {
-  const context = useContext(TasksContext);
+  const tasks = useAppSelector((state) => state.tasks.tasks); 
 
-  const [filterCategory, setFilterCategory] = useState<string>(categoryTypesWithAll[0]);
-  const [filterStatus, setFilterStatus] = useState<string>(statusTypesWithAll[0]);
-  const [filterPriority, setFilterPriority] = useState<string>(priorityTypesWithAll[0]);
-
-  if (!context) {
-    throw new Error("useTaskFilter must be used within a TasksProvider");
-  }
-
-  const {tasks} = context;
+  const [filterCategory, setFilterCategory] = useState<string>(ALL_TYPES);
+  const [filterStatus, setFilterStatus] = useState<string>(ALL_TYPES);
+  const [filterPriority, setFilterPriority] = useState<string>(ALL_TYPES);
   
   const filteredTasks = tasks.filter((task) => {
     return (
-      (filterCategory === categoryTypesWithAll[0] || task.category === filterCategory) &&
-      (filterStatus === statusTypesWithAll[0] || task.status === filterStatus) &&
-      (filterPriority === priorityTypesWithAll[0] || task.priority === filterPriority)
+      (filterCategory === ALL_TYPES || task.category === filterCategory) &&
+      (filterStatus === ALL_TYPES || task.status === filterStatus) &&
+      (filterPriority === ALL_TYPES || task.priority === filterPriority)
     );
   });
 

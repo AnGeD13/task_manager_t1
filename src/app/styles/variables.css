@@ -4,4 +4,6 @@
 
   --body-bg: var(--admiral-color-Neutral_Neutral10);
   --card-bg: var(--admiral-color-Neutral_Neutral00);
+  --modal-bg: var(--admiral-color-Neutral_Neutral00);
+  --modal-overlay: rgba(0, 0, 0, 0.5);
 }
