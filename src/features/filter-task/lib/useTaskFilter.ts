@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useAppSelector } from "@app/store/hooks";
 import { ALL_TYPES } from "@entities/task/model/taskTypes";
+import { useGetTasksQuery } from "@/entities/task/api/taskApi";
 
 export function useTaskFilter() {
-  const tasks = useAppSelector((state) => state.tasks.tasks); 
+  const {data: tasks = []} = useGetTasksQuery();
 
   const [filterCategory, setFilterCategory] = useState<string>(ALL_TYPES);
   const [filterStatus, setFilterStatus] = useState<string>(ALL_TYPES);

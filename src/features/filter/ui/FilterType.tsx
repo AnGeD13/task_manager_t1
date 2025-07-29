@@ -1,4 +1,4 @@
-import { useState, type Dispatch, type SetStateAction } from "react";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import { Select, Option, T } from "@admiral-ds/react-ui";
 import { ALL_TYPES, getTypes, getTypesWithAll, labelForType, taskTypes, type ITask, type TaskTypeKey } from "@entities/task";
 import styles from "./filterType.module.css";
@@ -31,6 +31,10 @@ export function FilterType({type, value, changeTask, setState}: IFilter) {
   const curValue = value === undefined ? ALL_TYPES : value;
   const typesArray = curValue === ALL_TYPES ? getTypesWithAll(taskTypes[type]) : getTypes(taskTypes[type]);
   const [typeValue, setTypeValue] = useState<string>(curValue);
+
+  useEffect(() => {
+    setTypeValue(curValue);
+  }, [curValue])
 
   const handleChangeType = (newType: string) => {
     setTypeValue(newType);

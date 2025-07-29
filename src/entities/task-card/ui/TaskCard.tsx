@@ -1,21 +1,20 @@
 import { Link } from "react-router-dom"
 import { Button, T, Tag, Tags } from "@admiral-ds/react-ui";
-import { useAppDispatch } from "@app/store/hooks";
-import { deleteTask } from "@/entities/task/model/taskSlice";
 import type { ITask } from "@/entities/task/model";
 import { getTagKind } from "@/entities/task";
 import { ConfirmModal } from "@shared/confirm-modal";
 import { MdDelete } from "react-icons/md";
 import { useState } from "react";
 import styles from "./taskCard.module.css";
+import { useDeleteTaskMutation } from "@/entities/task/api/taskApi";
 
 
 export function TaskCard(task: ITask) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
+  const [deleteTask] = useDeleteTaskMutation();
 
   const handleDeleteTask = (id: string) => {
-    dispatch(deleteTask({id: id}));
+    deleteTask(id);
     handleCancelModal();
   };
 

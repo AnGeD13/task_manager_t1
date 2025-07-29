@@ -54,11 +54,13 @@ export function DetailPage(mode: TmodeTaskPostHook) {
       >Заполните все обязательные поля</T>
       <div className={styles.btns}>
         <Button 
+          type="button"
           appearance="success" 
           dimension="s" 
           onClick={handlePostTask}
         >Сохранить</Button>
         <Button 
+          type="button"
           appearance="tertiary" 
           dimension="s"
           onClick={handleGoBack}
