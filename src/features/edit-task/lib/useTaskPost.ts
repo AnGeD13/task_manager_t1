@@ -51,7 +51,7 @@ export function useTaskPost(mode: TmodeTaskPostHook) {
   };
 
   const handlePostTask = () => {
-    if (task.title.trim() && task.category && task.priority && task.status) {
+    if (task.title.trim() && task.priority && task.status && task.category) {
       const taskDate = formateDate();
       
       if (mode.mode === "create") {
